@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+	<style>
+		table,
+		td,
+		th {
+			border: 5px double black;
+			padding: 5px 10px;
+			margin-bottom: 50px;
+		}
+
+		.main {
+			margin: 50px;
+			padding: 10px;
+			border: 3px solid gray;
+			border-radius: 10px;
+		}
+
+		.content {
+			margin: 5px
+		}
+
+		.first-tag,
+		.third-tag,
+		.sec-tag {
+			float: right;
+		}
+
+		h4 {
+			text-align: center;
+			margin-bottom: 50px;
+		}
+	</style>
+</head>
+
+<body>
+	<script>
+		var array = [];
+		var array1 = [];
+		var i = 1;
+		var urlParts = window.location.search;
+		var searchParams = new URLSearchParams(urlParts);
+		for (var pair of searchParams.entries()) {
+			console.log(pair[0] + ',' + pair[1]);
+			array[i] = pair[0]; array1[i] = pair[1];
+			i++;
+		}
+		console.log(i.length);
+		function matching() {
+			var x = inputname.value;
+			var y = inputnum.value;
+			if (x == array1[1] && y == array1[2]) {
+				console.log("All value is matched")
+				var table = document.getElementById("myTable");
+				var row = table.insertRow(0);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				cell1.innerHTML = x;
+				cell2.innerHTML = y;
+			}
+			else (
+				alert("All value is not matched")
+			)
+		}
+		function finding() {
+			var z = findvalue.value;
+			for (i = 1; i <= 3; i++) {
+				if (z == array[i]){
+					console.log("value find \t" + array1[i])
+					var x= document.getElementById("searchpart").innerHTML =" Search value is      " + array1[i];
+				}
+				else
+					alert("value for array " + z + " is not found. Please Search key from URL")
+				break;
+			}
+
+		}
+	</script>
+	<div class="main">
+		<h4>Table For URL Parameter Matching and Finding</h4>
+		<div class="content">
+			<label>please enter first value</label><input class="first-tag" type="text" id="inputname"></br>
+		</div>
+		<div class="content">
+			<label>please enter Second value</label><input class="sec-tag" type="text" id="inputnum"></br>
+		</div>
+		<button class="btn btn-primary" onclick="matching()">Submit</button><br><br>
+		<label>Enter key for search</label><input class="third-tag" type="text" id="findvalue"></br>
+		<button class="btn btn-success" onclick="finding()">Find</button>
+		
+	</div>
+	</br>
+	</br>
+	</br>
+	</div>
+
+	<table align="center">
+		
+		<thead>
+			<th>First val</th>
+			<th>Second val</th>
+		</thead>
+		<tbody id="myTable"></tbody>
+		
+	</table>
+	<div class="jumbotron text-center"><div class="searchvalue"id="searchpart"></div></div>
+</body>
+
+</html>
